@@ -1,8 +1,14 @@
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { Repositories } from "./pages/Repositories";
 
-test("renders learn react link", () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("App title", () => {
+  render(<Repositories />);
+  const element = screen.getByText("wiven's repositories");
+  expect(element).toBeInTheDocument();
+});
+
+test("Combobox", () => {
+  render(<Repositories />);
+  const combobox = screen.getByRole("combobox");
+  expect(combobox).toBeInTheDocument();
 });

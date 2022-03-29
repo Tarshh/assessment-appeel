@@ -31,6 +31,7 @@ const StyledContainer = styled.div`
   background-color: rgba(59, 130, 246, 0.2);
   border-radius: 0.5rem;
   margin: 1rem 0 1rem 0;
+  border: 1px solid #303630;
   &:hover {
     background-color: rgba(59, 130, 246, 0.3);
   }

@@ -1,9 +1,11 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Content } from "../components/Content";
 import { Spinner } from "../components/Spinner";
 import { owner } from "../constants";
+import { forBreakpoint } from "../utils/forBreakpoint";
 
 export function Commits() {
   const [commits, setCommits] = useState<any[]>();
@@ -24,9 +26,12 @@ export function Commits() {
       <StyledContainer>
         <StyledHeaderContainer>
           <h2>{repo}</h2>
-          <StyledSearchInput
-            onChange={(e) => setFilter(e.target.value.toLowerCase())}
-          />
+          <div>
+            <StyledSpan>Search through commits</StyledSpan>
+            <StyledSearchInput
+              onChange={(e) => setFilter(e.target.value.toLowerCase())}
+            />
+          </div>
         </StyledHeaderContainer>
         {commits ? (
           commits
@@ -54,20 +59,33 @@ export function Commits() {
 }
 
 const StyledHeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  ${forBreakpoint(
+    "tablet",
+    css`
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+    `
+  )}
+`;
+
+const StyledSpan = styled.span`
+  margin-right: 1rem;
 `;
 
 const StyledSearchInput = styled.input`
   height: fit-content;
 `;
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   max-width: 50rem;
   margin: 0 auto;
-  justify-content: center;
 `;
 
 const StyledCommitContainer = styled.div`
@@ -76,6 +94,7 @@ const StyledCommitContainer = styled.div`
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1rem;
+  width: 100%;
 `;
 
 const StyledCommitTitle = styled.p`
